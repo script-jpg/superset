@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superset - Graph Visualization</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- D3.js library for graph visualization -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        /* Graph-specific styles */
+        #graph-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            background-color: #ffffee;
+            overflow: hidden;
+        }
+        
+        /* SVG container for D3.js */
+        #graph-svg {
+            width: 100%;
+            height: 100%;
+            background-color: #ffffee;
+        }
+        
+        /* Node styles */
+        .node {
+            cursor: pointer;
+            stroke: #d9bfa7;
+            stroke-width: 2px;
+        }
+        
+        .node.root {
+            fill: #ffe;
+            stroke: #800000;
+            stroke-width: 3px;
+        }
+        
+        .node.reply {
+            fill: #f0e0d6;
+            stroke: #d9bfa7;
+        }
+        
+        .node:hover {
+            stroke-width: 4px;
+            filter: brightness(1.1);
+        }
+        
+        /* Link styles */
+        .link {
+            fill: none;
+            stroke: #d9bfa7;
+            stroke-width: 2px;
+            opacity: 0.7;
+            marker-end: url(#arrowhead);
+            /* stroke: #800000; */
+            stroke-width: 3px;
+            opacity: 1;
+        }
+        
+        /* .link:hover {
+            stroke: #800000;
+            stroke-width: 3px;
+            opacity: 1;
+        } */
+        
+        /* Node labels */
+        .node-label {
+            font-size: 10px;
+            font-weight: bold;
+            fill: #800000;
+            text-anchor: middle;
+            dominant-baseline: middle;
+            pointer-events: none;
+            user-select: none;
+        }
+        
+        /* Post preview popup */
+        .post-preview {
+            position: absolute;
+            background-color: #f0e0d6;
+            border: 1px solid #d9bfa7;
+            border-radius: 3px;
+            padding: 10px;
+            max-width: 400px;
+            max-height: 300px;
+            overflow-y: auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            z-index: 100;
+            display: none;
+        }
+        
+        .post-preview .post {
+            margin: 0;
+            border: none;
+            background-color: transparent;
+        }
+        
+        /* Controls */
+        .graph-controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #f0e0d6;
+            border: 1px solid #d9bfa7;
+            border-radius: 3px;
+            padding: 10px;
+            z-index: 50;
+        }
+        
+        .graph-controls button {
+            background-color: #d9bfa7;
+            border: 1px solid #b8a99a;
+            color: #800000;
+            padding: 4px 8px;
+            margin: 2px;
+            cursor: pointer;
+            font-size: 11px;
+            border-radius: 2px;
+        }
+        
+        .graph-controls button:hover {
+            background-color: #c9b29b;
+        }
+        
+        /* Graph info */
+        .graph-info {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #f0e0d6;
+            border: 1px solid #d9bfa7;
+            border-radius: 3px;
+            padding: 10px;
+            font-size: 11px;
+            color: #800000;
+            z-index: 50;
+        }
+        
+        /* Tooltip for links */
+        .link-tooltip {
+            position: absolute;
+            background-color: #f0e0d6;
+            border: 1px solid #d9bfa7;
+            border-radius: 3px;
+            padding: 5px;
+            font-size: 10px;
+            color: #800000;
+            z-index: 100;
+            pointer-events: none;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="graph-container">
+        <div class="graph-info">
+            <div><strong>Superset - Graph View</strong></div>
+            <div id="graph-stats">Loading...</div>
+        </div>
+        
+        <div class="graph-controls">
+            <button onclick="graphView.resetLayout()">Reset Layout</button>
+            <button onclick="graphView.toggleConnections()">Toggle Connections</button>
+            <button onclick="graphView.centerGraph()">Center</button>
+            <a href="index.html" style="text-decoration: none;"><button>Thread View</button></a>
+            <a href="rooms.html" style="text-decoration: none;"><button>Chat-Rooms</button></a>
+        </div>
+        
+        <!-- SVG container for D3.js -->
+        <svg id="graph-svg">
+            <!-- Define arrowhead marker -->
+            <defs>
+                <marker id="arrowhead" markerWidth="6" markerHeight="4.5" 
+                        refX="14" refY="2.25" orient="auto">
+                    <polygon points="0 0, 6 2.25, 0 4.5" fill="#d9bfa7" />
+                </marker>
+            </defs>
+            <!-- Links will be rendered here -->
+            <g id="links-group"></g>
+            <!-- Nodes will be rendered here -->
+            <g id="nodes-group"></g>
+        </svg>
+        
+        <div id="post-preview" class="post-preview"></div>
+        <div id="link-tooltip" class="link-tooltip"></div>
+    </div>
+    
+    <script src="parser.js"></script>
+    <script src="post-helper.js"></script>
+    <script src="graph.js"></script>
+</body>
+</html>

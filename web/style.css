@@ -1,0 +1,191 @@
+/* 4chan-inspired styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    background-color: #ffffee;
+    color: #800000;
+    line-height: 1.4;
+}
+
+.board-header {
+    text-align: center;
+    padding: 20px;
+    background-color: #ffe;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.board-header h1 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #800000;
+    margin-bottom: 5px;
+}
+
+.board-subtitle {
+    font-size: 14px;
+    color: #800000;
+}
+
+.thread-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.post {
+    background-color: #f0e0d6;
+    border: 1px solid #d9bfa7;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.post.reply {
+    background-color: #e6d5c4;
+    border-color: #c9b29b;
+}
+
+.post-info {
+    margin-bottom: 8px;
+    font-size: 11px;
+}
+
+.post-num {
+    /* font-weight: bold; */
+    /* color: #117743; */
+    color: #666;
+}
+
+.post-author {
+    font-weight: bold;
+    color: #117743;
+}
+
+.post-time {
+    color: #666;
+}
+
+.post-content {
+    margin: 10px 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.greentext {
+    color: #789922;
+    font-weight: normal;
+}
+
+.post-tags {
+    margin-top: 8px;
+}
+
+.tag {
+    display: inline-block;
+    background-color: #d9bfa7;
+    color: #800000;
+    padding: 2px 6px;
+    margin: 2px;
+    border-radius: 2px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+/* Post reactions styling */
+.post-reactions {
+    margin-top: 8px;
+    padding: 4px 0;
+    border-top: 1px solid #d9bfa7;
+}
+
+.reaction {
+    display: inline-block;
+    background-color: #f0e0d6;
+    border: 1px solid #d9bfa7;
+    color: #800000;
+    padding: 2px 6px;
+    margin: 2px 4px 2px 0;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: normal;
+}
+
+.reaction:hover {
+    background-color: #e6d5c4;
+    cursor: default;
+}
+
+.show-replies-btn {
+    background-color: #d9bfa7;
+    border: 1px solid #b8a99a;
+    color: #800000;
+    padding: 4px 8px;
+    margin: 5px 0;
+    cursor: pointer;
+    font-size: 11px;
+    border-radius: 2px;
+}
+
+.show-replies-btn:hover {
+    background-color: #c9b29b;
+}
+
+.replies-container {
+    margin-top: 10px;
+}
+
+.error {
+    background-color: #ffcccc;
+    border: 1px solid #ff0000;
+    color: #ff0000;
+    padding: 10px;
+    margin: 20px 0;
+    border-radius: 3px;
+    text-align: center;
+}
+
+/* Reply markers for posts that appear in multiple contexts */
+.reply-marker {
+    padding: 2px 8px;
+    margin: 2px 0;
+    font-size: 11px;
+    color: #789922; /* greentext color */
+    background-color: transparent;
+    border: none;
+}
+
+/* Thread sections - more subtle separation */
+.thread-section {
+    margin-bottom: 20px;
+}
+
+.thread-section:last-child {
+    margin-bottom: 0;
+}
+
+/* Add subtle visual separation between threads */
+.thread-section:not(:last-child) {
+    padding-bottom: 15px;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .thread-container {
+        padding: 0 10px;
+    }
+    
+    .post {
+        margin: 5px 0;
+        padding: 8px;
+    }
+    
+    .replies-container {
+        margin-left: 20px !important;
+    }
+}
