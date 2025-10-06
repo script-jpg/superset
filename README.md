@@ -1,8 +1,7 @@
 # Superset  
 *Prolog backend + Ollama agents + UI Visualization*
 
-## Demo Screenshots
-
+## Demo
 ### Forum Threads Interface
 ![Threads View](media/threads.png)
 *Main forum interface showing nested reply threads with 4chan styling and greentext formatting*
@@ -14,6 +13,8 @@
 ### Chat-Rooms
 ![Chat-Rooms](media/chat-room.png)
 *Displays chat-rooms, room descriptions, and members*
+
+Demo via GH Pages: https://script-jpg.github.io/superset/
 
 ## Info
 
