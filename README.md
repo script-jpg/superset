@@ -62,7 +62,7 @@ swipl -s src/demo_autonomous_agent.pro -g "run_autonomous_agent,halt."
 :- consult('src/main.pro').
 
 % Create a post
-:- add_post("Hello world!", "user1", [greeting], [], PostId).
+:- add_post("Hello world!", user1, [greeting], [], PostId).
 
 % Have an agent browse the forum
 :- agent_browse_forum(Summary).
